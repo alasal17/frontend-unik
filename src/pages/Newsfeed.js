@@ -1,24 +1,52 @@
 import React, {Component} from 'react';
 import SideNav from '../components/SideNav'
 import './style/Newsfeed.css'
+import axios from 'axios'
 
 class Newsfeed extends Component {
   constructor(props) {
-    super(props);
-    // Don't call this.setState() here!
-    this.state = { counter: 0 };
-    this._openSideNav = this._openSideNav.bind(this);
-  }
+      super(props);
+      this._getUserName = this._getUserName.bind(this);
+      this._getUserPost = this._getUserPost.bind(this);
+      this._getUserName1 = this._getUserName1.bind(this);
+      this.state = {
+        username: '',
+        username1: '',
+        post:''
+      }
+    }
 
 
-_openSideNav(){
-    document.getElementById("mySideNav").style.width = "250px";
+
+
+
+componentDidMount(){
+
+this._getUserName();
+this._getUserPost();
+this._getUserName1();
+
+
 }
 
 
+_getUserName(){
+  axios.get('http://localhost:8080/api/user/lars').then(res => this.setState({ username: res.data.userName }))
+}
 
+_getUserPost(){
+  axios.get('http://localhost:8080/api/user/lars')
+  .then(res => this.setState({ post: res.data.post.postContent }))
+}
+
+
+_getUserName1(){
+  axios.get('http://localhost:8080/api/user/moon').then(res => this.setState({ username1: res.data.userName }))
+}
 
   render(){
+
+
     return (
 <div>
       <div>
@@ -45,17 +73,19 @@ _openSideNav(){
 <dt>
 <dd className="content-txt">
  <img className="user-icon" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"/>
- username
-</dd>
-<dd>
- <p>Hei er det noe fra Oslo her?</p>
-</dd>
-</dt>
+{this.state.username}
+
+
+ <p>{this.state.post}</p>
+ </dd>
+ </dt>
+
 <dt>
 <dd>
 <img className="icons" src="https://cdn0.iconfinder.com/data/icons/free-daily-icon-set/512/Comments-512.png"/>
 </dd>
 </dt>
+
 </div>
 
 
@@ -64,7 +94,7 @@ _openSideNav(){
 <dt>
 <dd className="content-txt">
  <img className="user-icon" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"/>
- username
+ {this.state.username1}
 </dd>
 <dd>
 <img className="newsfeed-image" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500"/>

@@ -4,6 +4,7 @@ import './App.css';
 import Newsfeed from './pages/Newsfeed';
 import Events from './pages/Events';
 import Health from './pages/Health';
+import Login from './pages/Login';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -20,8 +21,6 @@ class App extends Component {
 
        <div className="sidenav">
              <dt>
-
-
        <dd className="menu-txt">
        <Link to={"/Newsfeed"}>
        <img className="menu-icons" src="https://image.flaticon.com/icons/svg/25/25694.svg" />Newsfeed
@@ -32,8 +31,12 @@ class App extends Component {
 
        <dd className="menu-txt">
           <Link to={"/Events"}>
-       <img className="menu-icons" src="http://chittagongit.com/download/217542" /> Events
-       </Link>
+
+
+        <img className="menu-icons" src="http://chittagongit.com/download/217542" />
+        events
+
+     </Link>
        </dd>
 
        <dd className="menu-txt">
@@ -43,8 +46,13 @@ class App extends Component {
        </dd>
 
         </dt>
+
+      
        </div>
+
              </div>
+
+
 </nav>
 
 
@@ -53,6 +61,8 @@ class App extends Component {
   <Route exact path='/Newsfeed' component={Newsfeed} />
   <Route exact path='/Events' component={Events} />
   <Route exact path='/Health' component={Health} />
+  <Route exact path='/Login' component={Login} />
+
 </Switch>
 
 </Router>
